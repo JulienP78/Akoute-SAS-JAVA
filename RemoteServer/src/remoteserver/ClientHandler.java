@@ -1,8 +1,4 @@
-/*
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
- */
+
 
 package remoteserver;
 
@@ -16,15 +12,12 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Halim
- */
+
 class ClientHandler extends Thread {
 
     private JDesktopPane desktop = null;
     private Socket cSocket = null;
-    private JInternalFrame interFrame = new JInternalFrame("Client Screen",
+    private JInternalFrame interFrame = new JInternalFrame("Screenshot du client",
                                                             true, true, true);
     private JPanel cPanel = new JPanel();
     

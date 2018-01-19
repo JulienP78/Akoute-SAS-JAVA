@@ -1,8 +1,3 @@
-/*
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
- */
 
 package remoteclient;
 
@@ -58,10 +53,10 @@ class ScreenSpyer extends Thread {
              */
             ImageIcon imageIcon = new ImageIcon(image);
             
-            BufferedImage resizedImg = new BufferedImage(640, 400, Transparency.TRANSLUCENT);
+            BufferedImage resizedImg = new BufferedImage(1920, 1080, Transparency.TRANSLUCENT);
             Graphics2D g2 = resizedImg.createGraphics();
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g2.drawImage(imageIcon.getImage(), 0, 0, 640, 400, null);
+            g2.drawImage(imageIcon.getImage(), 0, 0, 1920, 1080, null);
             g2.dispose();
             
             ImageIcon imageIcon2 = new ImageIcon(resizedImg);

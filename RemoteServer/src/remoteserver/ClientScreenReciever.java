@@ -1,8 +1,4 @@
-/*
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
- */
+
 package remoteserver;
 
 import java.awt.Graphics;
@@ -13,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- * @author Halim
  * ClientScreenReciever is responsible for recieving client screenshot and displaying
  * it in the server. Each connected client has a separate object of this class
  */
@@ -37,7 +32,7 @@ class ClientScreenReciever extends Thread {
                 while(continueLoop){
                     //Recieve client screenshot and resize it to the current panel size
                     ImageIcon imageIcon = (ImageIcon) cObjectInputStream.readObject();
-                    System.out.println("New image recieved");
+                    System.out.println("Nouvelle image");
                     Image image = imageIcon.getImage();
                     image = image.getScaledInstance(cPanel.getWidth(),cPanel.getHeight()
                                                         ,Image.SCALE_FAST);

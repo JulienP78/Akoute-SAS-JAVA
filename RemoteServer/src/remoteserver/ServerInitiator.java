@@ -1,11 +1,5 @@
 package remoteserver;
 
-/*
-
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
- */
 
 import java.awt.BorderLayout;
 import java.io.IOException;
@@ -26,7 +20,7 @@ public class ServerInitiator {
     private JDesktopPane desktop = new JDesktopPane();
 
     public static void main(String args[]){
-        String port = JOptionPane.showInputDialog("Please enter listening port");
+        String port = JOptionPane.showInputDialog("Entrez un port");
         new ServerInitiator().initialize(Integer.parseInt(port));
     }
 
@@ -39,7 +33,7 @@ public class ServerInitiator {
             //Listen to server port and accept clients connections
             while(true){
                 Socket client = sc.accept();
-                System.out.println("New client Connected to the server");
+                System.out.println("Connecté");
                 //Per each client create a ClientHandler
                 new ClientHandler(client,desktop);
             }

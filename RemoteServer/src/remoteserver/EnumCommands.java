@@ -1,11 +1,6 @@
 package remoteserver;
 
 
-/*
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
- */
 
 /**
  * Used to represent commands which can be sent by the server

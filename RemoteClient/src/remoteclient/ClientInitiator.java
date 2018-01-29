@@ -1,8 +1,5 @@
 
-/*
- * Author Ahmed Abdelhalim - 2009
- * Email: englemo@hotmail.com
- * Please do not remove the above lines
+/*TEST
  */
 
 package remoteclient;

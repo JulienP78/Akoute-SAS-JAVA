@@ -33,7 +33,7 @@ public class ClientInitiator{
     
 
     public static void main(String[] args){
-        String port = JOptionPane.showInputDialog("Please enter server port");
+        String port = "5900";
         new ClientInitiator().initialize(Integer.parseInt(port));
     }
 

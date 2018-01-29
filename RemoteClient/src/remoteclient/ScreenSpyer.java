@@ -65,7 +65,6 @@ class ScreenSpyer extends Thread {
             try {
                 oos.writeObject(imageIcon2);
                 oos.reset(); //Clear ObjectOutputStream cache
-                System.out.println("Image envoyée");
             } catch (IOException ex) {
                ex.printStackTrace();
             }

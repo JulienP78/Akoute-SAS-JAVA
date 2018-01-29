@@ -23,8 +23,8 @@ public class ServerInitiator {
     private JDesktopPane desktop = new JDesktopPane();
 
     public static void main(String args[]){
-        String ip = JOptionPane.showInputDialog("Please enter server IP");
-        String port = JOptionPane.showInputDialog("Entrez un port");
+        String ip = "192.168.0.18";
+        String port = "5900";
         new ServerInitiator().initialize(ip, Integer.parseInt(port));
     }
 

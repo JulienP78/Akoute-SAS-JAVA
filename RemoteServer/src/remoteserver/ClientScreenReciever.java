@@ -30,6 +30,7 @@ class ClientScreenReciever extends Thread {
             try {
                 //Read screenshots of the client then draw them
                 while(continueLoop){
+                	System.out.println("1");
                     //Recieve client screenshot and resize it to the current panel size
                     ImageIcon imageIcon = (ImageIcon) cObjectInputStream.readObject();
                     System.out.println("Nouvelle image");

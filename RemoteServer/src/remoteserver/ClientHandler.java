@@ -13,7 +13,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 
-class ClientHandler extends Thread {
+public class ClientHandler extends Thread {
 
     private JDesktopPane desktop = null;
     private Socket cSocket = null;
@@ -24,6 +24,7 @@ class ClientHandler extends Thread {
     public ClientHandler(Socket cSocket, JDesktopPane desktop) {
         this.cSocket = cSocket;
         this.desktop = desktop;
+        System.out.println("ClientHanler");
         start();
     }
 

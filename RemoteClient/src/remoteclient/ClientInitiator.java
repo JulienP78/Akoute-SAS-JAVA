@@ -14,11 +14,14 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import remoteserver.ClientHandler;
 
 /**
  *
@@ -27,41 +30,48 @@ import javax.swing.JOptionPane;
  */
 public class ClientInitiator{
 
-    Socket socket = null;
+    
 
     public static void main(String[] args){
-        String ip = JOptionPane.showInputDialog("Please enter server IP");
         String port = JOptionPane.showInputDialog("Please enter server port");
-        new ClientInitiator().initialize(ip, Integer.parseInt(port));
+        new ClientInitiator().initialize(Integer.parseInt(port));
     }
 
-    public void initialize(String ip, int port ){
+    public void initialize(int port ){
 
         Robot robot = null; //Used to capture the screen
         Rectangle rectangle = null; //Used to represent screen dimensions
 
         try {
-            System.out.println("Connecting to server ..........");
-            socket = new Socket(ip, port);
-            System.out.println("Connection Established.");
+            
+        	ServerSocket sc = new ServerSocket(port);
+        	while(true){
 
-            //Get default screen device
-            GraphicsEnvironment gEnv=GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice gDev=gEnv.getDefaultScreenDevice();
+                Socket client = sc.accept();
+                System.out.println("Connecté");
+                //Per each client create a ClientHandler
+                
+                
+              //Get default screen device
+                GraphicsEnvironment gEnv=GraphicsEnvironment.getLocalGraphicsEnvironment();
+                GraphicsDevice gDev=gEnv.getDefaultScreenDevice();
 
-            //Get screen dimensions
-            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            rectangle = new Rectangle(dim);
+                //Get screen dimensions
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                rectangle = new Rectangle(dim);
 
-            //Prepare Robot object
-            robot = new Robot(gDev);
+                //Prepare Robot object
+                robot = new Robot(gDev);
 
-            //draw client gui
-            drawGUI();
-            //ScreenSpyer sends screenshots of the client screen
-            new ScreenSpyer(socket,robot,rectangle);
-            //ServerDelegate recieves server commands and execute them
-            new ServerDelegate(socket,robot);
+                //draw client gui
+                drawGUI();
+                //ScreenSpyer sends screenshots of the client screen
+                new ScreenSpyer(client,robot,rectangle);
+                //ServerDelegate recieves server commands and execute them
+                new ServerDelegate(client,robot);
+            }
+
+            
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

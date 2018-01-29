@@ -46,18 +46,31 @@ class ScreenSpyer extends Thread {
         }
 
        while(continueLoop){
+    	   
     	   System.out.println("0");
             //Capture screen
-            BufferedImage image = robot.createScreenCapture(rectangle);
+            /*
+            try {
+				oos.writeObject(robot.createScreenCapture(rectangle));
+				oos.flush();
+				oos.reset();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			*/
             /* I have to wrap BufferedImage with ImageIcon because BufferedImage class
              * does not implement Serializable interface
              */
+
+            BufferedImage image = robot.createScreenCapture(rectangle);
+
             ImageIcon imageIcon = new ImageIcon(image);
             
-            BufferedImage resizedImg = new BufferedImage(1920, 1080, Transparency.TRANSLUCENT);
+            BufferedImage resizedImg = new BufferedImage(1280, 720, Transparency.TRANSLUCENT);
             Graphics2D g2 = resizedImg.createGraphics();
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g2.drawImage(imageIcon.getImage(), 0, 0, 1920, 1080, null);
+            g2.drawImage(imageIcon.getImage(), 0, 0, 1280, 720, null);
             g2.dispose();
             
             ImageIcon imageIcon2 = new ImageIcon(resizedImg);
@@ -66,12 +79,23 @@ class ScreenSpyer extends Thread {
             	System.out.println("1");
                 oos.writeObject(imageIcon2);
                 System.out.println("2");
+                oos.flush();
                 oos.reset(); //Clear ObjectOutputStream cache
                 System.out.println("3");
             } catch (IOException ex) {
-               ex.printStackTrace();
+               try {
+       			if(socket.getInputStream().read()==-1)
+       			   {
+       				   System.out.println("Socket fermée !");
+       				   continueLoop = false;
+       			   }
+       			   else{
+       				   System.out.println("Socket ouverte !");
+       			   }
+       			} catch (IOException e1) {
+       				// TODO Auto-generated catch block
+       			}
             }
-
             //wait for 100ms to reduce network traffic
             try{
                 Thread.sleep(100);

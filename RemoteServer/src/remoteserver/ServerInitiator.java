@@ -2,12 +2,15 @@ package remoteserver;
 
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.sun.glass.events.WindowEvent;
 
 
 /**
@@ -50,6 +53,18 @@ public class ServerInitiator {
     public void drawGUI(){
             frame.add(desktop,BorderLayout.CENTER);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.addWindowListener(new java.awt.event.WindowAdapter() {
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                	System.out.println("close event");
+                	try {
+						socket.close();
+						System.out.println("socket closed");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+            });
             //Show the frame in a maximized state
             frame.setExtendedState(frame.getExtendedState()|JFrame.MAXIMIZED_BOTH);
             frame.setVisible(true);

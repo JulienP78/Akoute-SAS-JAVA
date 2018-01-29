@@ -46,7 +46,7 @@ public class ClientInitiator{
             
         	ServerSocket sc = new ServerSocket(port);
         	while(true){
-
+        		
                 Socket client = sc.accept();
                 System.out.println("Connecté");
                 //Per each client create a ClientHandler
@@ -69,7 +69,7 @@ public class ClientInitiator{
                 new ScreenSpyer(client,robot,rectangle);
                 //ServerDelegate recieves server commands and execute them
                 new ServerDelegate(client,robot);
-            }
+        	 }
 
             
         } catch (UnknownHostException ex) {

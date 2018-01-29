@@ -46,6 +46,7 @@ class ScreenSpyer extends Thread {
         }
 
        while(continueLoop){
+    	   System.out.println("0");
             //Capture screen
             BufferedImage image = robot.createScreenCapture(rectangle);
             /* I have to wrap BufferedImage with ImageIcon because BufferedImage class
@@ -60,12 +61,13 @@ class ScreenSpyer extends Thread {
             g2.dispose();
             
             ImageIcon imageIcon2 = new ImageIcon(resizedImg);
-            
             //Send captured screen to the server
             try {
+            	System.out.println("1");
                 oos.writeObject(imageIcon2);
+                System.out.println("2");
                 oos.reset(); //Clear ObjectOutputStream cache
-                System.out.println("Image envoyée");
+                System.out.println("3");
             } catch (IOException ex) {
                ex.printStackTrace();
             }

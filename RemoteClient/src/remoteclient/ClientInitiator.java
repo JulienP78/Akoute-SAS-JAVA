@@ -11,17 +11,10 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import remoteserver.ClientHandler;
 
 /**
  *
@@ -32,8 +25,10 @@ public class ClientInitiator{
 
     
 
-    public static void main(String[] args){
-        String port = "5900";
+    private ServerSocket sc;
+
+	public static void main(String[] args){
+    		String port = args[0];
         new ClientInitiator().initialize(Integer.parseInt(port));
     }
 
@@ -44,7 +39,7 @@ public class ClientInitiator{
 
         try {
             
-        	ServerSocket sc = new ServerSocket(port);
+        	sc = new ServerSocket(port);
         	while(true){
         		
                 Socket client = sc.accept();

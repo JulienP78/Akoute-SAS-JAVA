@@ -2,15 +2,10 @@ package remoteserver;
 
 
 import java.awt.BorderLayout;
-import java.awt.event.WindowAdapter;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import com.sun.glass.events.WindowEvent;
 
 
 /**
@@ -26,8 +21,8 @@ public class ServerInitiator {
     private JDesktopPane desktop = new JDesktopPane();
 
     public static void main(String args[]){
-        String ip = "192.168.0.18";
-        String port = "5900";
+    		String ip = args[0];
+        String port = args[1];
         new ServerInitiator().initialize(ip, Integer.parseInt(port));
     }
 
